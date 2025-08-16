@@ -43,6 +43,7 @@ class EmployeeManagementApp extends LitElement {
       font-family:
         -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
         Cantarell, sans-serif;
+      font-size: 14px;
     }
 
     .app-container {
@@ -53,8 +54,7 @@ class EmployeeManagementApp extends LitElement {
 
     #router-outlet {
       flex: 1;
-      padding: 20px;
-      max-width: 1200px;
+      padding: 16px 12px;
       margin: 0 auto;
       width: 100%;
       box-sizing: border-box;
@@ -62,7 +62,7 @@ class EmployeeManagementApp extends LitElement {
 
     @media (max-width: 768px) {
       #router-outlet {
-        padding: 16px;
+        padding: 12px 8px;
       }
     }
   `;

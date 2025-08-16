@@ -44,13 +44,14 @@ export class EmployeeList extends LitElement {
       margin-bottom: 24px;
       flex-wrap: wrap;
       gap: 16px;
+      color: #ff6b35;
     }
 
     .list-title {
       font-size: 24px;
       font-weight: 600;
       margin: 0;
-      color: #333;
+      color: #ff6b35;
     }
 
     .header-controls {
@@ -129,7 +130,8 @@ export class EmployeeList extends LitElement {
       padding: 12px 8px;
       text-align: left;
       font-weight: 600;
-      color: #333;
+      color: #ff6b35;
+      font-size: 14px;
       border-bottom: 1px solid #e9ecef;
       white-space: nowrap;
     }
@@ -170,6 +172,8 @@ export class EmployeeList extends LitElement {
       padding: 12px 8px;
       border-bottom: 1px solid #f1f3f4;
       vertical-align: middle;
+      font-size: 14px;
+      color: #333;
     }
 
     .employee-table td:first-child {
@@ -204,6 +208,7 @@ export class EmployeeList extends LitElement {
     .employee-name {
       font-weight: 500;
       color: #333;
+      font-size: 14px;
     }
 
     .employee-email {
@@ -220,8 +225,8 @@ export class EmployeeList extends LitElement {
     }
 
     .department-analytics {
-      background: #e3f2fd;
-      color: #1976d2;
+      background: #fff3e0;
+      color: #ff6b35;
     }
 
     .department-tech {
