@@ -11,7 +11,7 @@
     "prepare": "husky",
     "test": "web-test-runner --coverage",
     "test:watch": "web-test-runner --watch",
-    "build": "npm run build:localize && rimraf dist && rollup -c rollup.config.js && npm run analyze -- --exclude dist",
+    "build": "npm run build:localize && rollup -c && cp -r src/localization/locales dist/locales",
     "build:localize": "lit-localize build",
     "extract": "lit-localize extract",
     "start:build": "web-dev-server --root-dir dist --app-index index.html --open",
