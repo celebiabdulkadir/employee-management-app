@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { msg } from '../localization/index.js';
+import '../components/back-button.js';
 
 export class EmployeeFormView extends LitElement {
   static properties = {
@@ -15,6 +16,10 @@ export class EmployeeFormView extends LitElement {
 
     .view-header {
       margin-bottom: 24px;
+    }
+
+    back-button {
+      margin-bottom: 16px;
     }
 
     .view-title {
@@ -74,6 +79,10 @@ export class EmployeeFormView extends LitElement {
 
     return html`
       <div class="view-header">
+        <back-button
+          path="/"
+          text=${msg('Back to Employee List')}
+        ></back-button>
         <h1 class="view-title">${title}</h1>
         <p class="view-subtitle">${subtitle}</p>
       </div>
