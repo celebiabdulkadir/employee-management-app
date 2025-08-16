@@ -1,76 +1,86 @@
 import { LitElement, html, css } from 'lit';
 import { msg } from '../localization/index.js';
 import './language-switcher.js';
+import './app-button.js';
 
 export class AppHeader extends LitElement {
   static styles = css`
     :host {
       display: block;
       width: 100%;
-      background-color: #1976d2;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
       color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
     }
 
     .header-container {
-      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      height: 70px;
+      min-width: 0;
     }
 
     .logo-section {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
     }
 
     .app-title {
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 700;
       margin: 0;
       color: white;
       text-decoration: none;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .navigation {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 8px;
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 8px;
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    .nav-link {
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-      font-weight: 500;
-    }
-
-    .nav-link:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-link.active {
-      background-color: rgba(255, 255, 255, 0.2);
+    .nav-button {
+      --app-button-bg: rgba(255, 255, 255, 0.1);
+      --app-button-border: rgba(255, 255, 255, 0.2);
+      --app-button-color: white;
+      --app-button-hover-bg: rgba(255, 255, 255, 0.2);
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     language-switcher {
@@ -78,20 +88,62 @@ export class AppHeader extends LitElement {
       --language-button-border: rgba(255, 255, 255, 0.3);
       --language-button-color: white;
       --language-button-active-bg: rgba(255, 255, 255, 0.9);
-      --language-button-active-color: #1976d2;
+      --language-button-active-color: #ff6b35;
     }
 
     @media (max-width: 768px) {
       .header-container {
-        padding: 0 16px;
-        height: 56px;
+        padding: 0 8px;
+        height: 60px;
+      }
+
+      .logo-section {
+        gap: 6px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
       }
 
       .app-title {
-        font-size: 18px;
+        font-size: 16px;
+        max-width: 120px;
       }
 
-      .nav-links {
+      .header-actions {
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-container {
+        padding: 0 6px;
+        height: 56px;
+      }
+
+      .logo-section {
+        gap: 4px;
+        max-width: 50%;
+      }
+
+      .logo-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+      }
+
+      .app-title {
+        font-size: 14px;
+        max-width: 100px;
+      }
+
+      .header-actions {
+        gap: 4px;
+      }
+
+      .nav-button {
         display: none;
       }
     }
@@ -110,26 +162,40 @@ export class AppHeader extends LitElement {
     window.removeEventListener('locale-changed', this.localeChangeHandler);
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  handleAddNew() {
+    window.location.href = '/add';
+  }
+
   render() {
     return html`
       <header>
         <div class="header-container">
           <div class="logo-section">
-            <a href="/" class="app-title">${msg('Employee Management')}</a>
+            <div class="logo-icon">📊</div>
           </div>
 
-          <nav class="navigation">
-            <ul class="nav-links">
-              <li>
-                <a href="/" class="nav-link">${msg('Employees')}</a>
-              </li>
-              <li>
-                <a href="/add" class="nav-link">${msg('Add Employee')}</a>
-              </li>
-            </ul>
-          </nav>
-
           <div class="header-actions">
+            <app-button
+              variant="secondary"
+              size="small"
+              class="nav-button"
+              icon="👤"
+              @app-button-click=${() => {
+                window.location.href = '/';
+              }}
+            >
+              ${msg('Employees')}
+            </app-button>
+
+            <app-button
+              variant="secondary"
+              size="small"
+              icon="➕"
+              @app-button-click=${this.handleAddNew}
+            >
+              ${msg('Add New')}
+            </app-button>
             <language-switcher></language-switcher>
           </div>
         </div>
