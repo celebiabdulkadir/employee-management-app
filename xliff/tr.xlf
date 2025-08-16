@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<file target-language="tr" source-language="en" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="sbb731cacaa7fea68">
+  <source>Employee Management</source>
+</trans-unit>
+<trans-unit id="s32c9b3dd030fc24c">
+  <source>Add Employee</source>
+</trans-unit>
+<trans-unit id="s321ba842bf7c8486">
+  <source>Search by name, email or phone...</source>
+</trans-unit>
+</body>
+</file>
+</xliff>
