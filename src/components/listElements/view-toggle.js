@@ -19,6 +19,19 @@ export class ViewToggle extends LitElement {
     this.disabled = false;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.localeChangeHandler = () => {
+      this.requestUpdate();
+    };
+    window.addEventListener('locale-changed', this.localeChangeHandler);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('locale-changed', this.localeChangeHandler);
+  }
+
   static styles = css`
     :host {
       display: block;
@@ -61,7 +74,7 @@ export class ViewToggle extends LitElement {
               ?disabled=${this.disabled}
               @app-button-click=${() => this.handleViewChange(view.id)}
             >
-              ${msg(view.label)}
+              ${view.id === 'table' ? msg('Table View') : msg('Card View')}
             </app-button>
           `,
         )}

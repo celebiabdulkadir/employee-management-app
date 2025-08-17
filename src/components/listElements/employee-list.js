@@ -65,6 +65,28 @@ export class EmployeeList extends LitElement {
       gap: 16px;
     }
 
+    .bulk-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #fff3e0;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ff6b35;
+    }
+
+    .bulk-actions-text {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .selected-count {
+      color: #ff6b35;
+      font-weight: 600;
+    }
+
     .add-button {
       background: #ff6b35;
       color: white;
@@ -364,6 +386,36 @@ export class EmployeeList extends LitElement {
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  handleBulkDelete() {
+    const count = this.selectedEmployees.length;
+    if (count === 0) return;
+
+    if (
+      // eslint-disable-next-line no-alert, no-restricted-globals
+      confirm(
+        msg('Are you sure you want to delete %s employee(s)?').replace(
+          '%s',
+          count,
+        ),
+      )
+    ) {
+      try {
+        this.selectedEmployees.forEach(employeeId => {
+          employeeStore.delete(employeeId);
+        });
+        this.selectedEmployees = [];
+      } catch (error) {
+        // eslint-disable-next-line no-alert
+        alert(msg('Error deleting employees'));
+      }
+    }
+  }
+
+  handleClearSelection() {
+    this.selectedEmployees = [];
+  }
+
   render() {
     return html`
       <div class="list-header">
@@ -381,6 +433,35 @@ export class EmployeeList extends LitElement {
         </div>
       </div>
 
+      ${this.selectedEmployees.length > 0
+        ? html`
+            <div class="bulk-actions">
+              <span class="bulk-actions-text">
+                <span class="selected-count"
+                  >${this.selectedEmployees.length}</span
+                >
+                ${this.selectedEmployees.length === 1
+                  ? msg('employee selected')
+                  : msg('employees selected')}
+              </span>
+              <app-button
+                variant="primary"
+                size="small"
+                icon="🗑️"
+                @app-button-click=${this.handleBulkDelete}
+              >
+                ${msg('Delete Selected')}
+              </app-button>
+              <app-button
+                variant="ghost"
+                size="small"
+                @app-button-click=${this.handleClearSelection}
+              >
+                ${msg('Clear Selection')}
+              </app-button>
+            </div>
+          `
+        : ''}
       ${this.employees.length === 0 && !this.searchQuery
         ? html`
             <div class="empty-state">

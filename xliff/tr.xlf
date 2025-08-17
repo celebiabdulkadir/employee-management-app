@@ -158,6 +158,118 @@
   <source>Add New</source>
   <target>Yeni Ekle</target>
 </trans-unit>
+<trans-unit id="s27707a7616f7f789">
+  <source>First name is required</source>
+  <target>Ad gereklidir</target>
+</trans-unit>
+<trans-unit id="sb7c9b2995d6869b1">
+  <source>Last name is required</source>
+  <target>Soyad gereklidir</target>
+</trans-unit>
+<trans-unit id="sf07904be22a6165a">
+  <source>Email is required</source>
+  <target>E-posta gereklidir</target>
+</trans-unit>
+<trans-unit id="scf226d2c20f172c2">
+  <source>Phone is required</source>
+  <target>Telefon gereklidir</target>
+</trans-unit>
+<trans-unit id="sf72b66f732c5036d">
+  <source>Date of employment is required</source>
+  <target>İşe başlama tarihi gereklidir</target>
+</trans-unit>
+<trans-unit id="se2083c8b4aa99aba">
+  <source>Date of birth is required</source>
+  <target>Doğum tarihi gereklidir</target>
+</trans-unit>
+<trans-unit id="sf71f9578ca2ddb9a">
+  <source>Department is required</source>
+  <target>Departman gereklidir</target>
+</trans-unit>
+<trans-unit id="s35911e54e5c305df">
+  <source>Position is required</source>
+  <target>Pozisyon gereklidir</target>
+</trans-unit>
+<trans-unit id="sb2426c3994fed5cb">
+  <source>Invalid email format</source>
+  <target>Geçersiz e-posta formatı</target>
+</trans-unit>
+<trans-unit id="s90cdd193b4621e57">
+  <source>Invalid phone format</source>
+  <target>Geçersiz telefon formatı</target>
+</trans-unit>
+<trans-unit id="s54866c776fdee066">
+  <source>Employment date cannot be in the future</source>
+  <target>İşe başlama tarihi gelecekte olamaz</target>
+</trans-unit>
+<trans-unit id="s2a650a3c9bf76882">
+  <source>Employee must be at least 15 years old</source>
+  <target>Çalışan en az 15 yaşında olmalıdır</target>
+</trans-unit>
+<trans-unit id="sad272ec3aa40ff61">
+  <source>Birth date must be before employment date</source>
+  <target>Doğum tarihi işe başlama tarihinden önce olmalıdır</target>
+</trans-unit>
+<trans-unit id="s38f380fd1700c129">
+  <source>Employee must be at least 15 years old at employment date</source>
+  <target>Çalışan işe başlama tarihinde en az 15 yaşında olmalıdır</target>
+</trans-unit>
+<trans-unit id="s8a31c45933050d12">
+  <source>Department must be Analytics or Tech</source>
+  <target>Departman Analytics veya Tech olmalıdır</target>
+</trans-unit>
+<trans-unit id="s33ba04b61cd06448">
+  <source>Position must be Junior, Medior, or Senior</source>
+  <target>Pozisyon Junior, Medior veya Senior olmalıdır</target>
+</trans-unit>
+<trans-unit id="s26f9e407c2225cad">
+  <source>Email already exists</source>
+  <target>E-posta zaten mevcut</target>
+</trans-unit>
+<trans-unit id="sdf755a174e06216c">
+  <source>Phone number already exists</source>
+  <target>Telefon numarası zaten mevcut</target>
+</trans-unit>
+<trans-unit id="s7e42ff004fd79d84">
+  <source>An employee with the same name and birth date already exists</source>
+  <target>Aynı ad ve doğum tarihli çalışan zaten mevcut</target>
+</trans-unit>
+<trans-unit id="sf8758effabc86aeb">
+  <source>No employees found</source>
+  <target>Çalışan bulunamadı</target>
+</trans-unit>
+<trans-unit id="s42a922d12a5a73eb">
+  <source>Try adjusting your search criteria</source>
+  <target>Arama kriterlerinizi ayarlamayı deneyin</target>
+</trans-unit>
+<trans-unit id="s27346efc98fd4bcf">
+  <source>Are you sure you want to delete %s employee(s)?</source>
+  <target>%s çalışanı silmek istediğinizden emin misiniz?</target>
+</trans-unit>
+<trans-unit id="s2b74c1ba72fcfa5a">
+  <source>Error deleting employees</source>
+  <target>Çalışanları silerken hata oluştu</target>
+</trans-unit>
+<trans-unit id="s524b3abc977d91a2">
+  <source>employee selected</source>
+  <target>çalışan seçildi</target>
+</trans-unit>
+<trans-unit id="se7a83c3fe463fdcb">
+  <source>employees selected</source>
+  <target>çalışan seçildi</target>
+</trans-unit>
+<trans-unit id="s3b13d0f2c948dfe7">
+  <source>Delete Selected</source>
+  <target>Seçilenleri Sil</target>
+</trans-unit>
+<trans-unit id="s9348e76d0442e220">
+  <source>Clear Selection</source>
+  <target>Seçimi Temizle</target>
+</trans-unit>
+<trans-unit id="s5f4586bc1e2740e6">
+  <source>Clear search</source>
+  <target>Aramayı temizle</target>
+</trans-unit>
 </body>
 </file>
 </xliff>

@@ -18,6 +18,19 @@ export class Pagination extends LitElement {
     this.visiblePages = 5;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.localeChangeHandler = () => {
+      this.requestUpdate();
+    };
+    window.addEventListener('locale-changed', this.localeChangeHandler);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('locale-changed', this.localeChangeHandler);
+  }
+
   static styles = css`
     :host {
       display: block;

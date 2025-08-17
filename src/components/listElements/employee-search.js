@@ -6,6 +6,7 @@ export class EmployeeSearch extends LitElement {
     value: { type: String },
     placeholder: { type: String },
     disabled: { type: Boolean },
+    debounceDelay: { type: Number },
   };
 
   constructor() {
@@ -13,6 +14,25 @@ export class EmployeeSearch extends LitElement {
     this.value = '';
     this.placeholder = '';
     this.disabled = false;
+    this.debounceDelay = 300;
+    this.debounceTimer = null;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.localeChangeHandler = () => {
+      this.requestUpdate();
+    };
+    window.addEventListener('locale-changed', this.localeChangeHandler);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('locale-changed', this.localeChangeHandler);
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer);
+      this.debounceTimer = null;
+    }
   }
 
   static styles = css`
@@ -55,6 +75,38 @@ export class EmployeeSearch extends LitElement {
       pointer-events: none;
     }
 
+    .clear-button {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      transition: all 0.2s ease;
+    }
+
+    .clear-button:hover {
+      background: #f0f0f0;
+      color: #666;
+    }
+
+    .clear-button:active {
+      background: #e0e0e0;
+    }
+
+    .clear-button.hidden {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       .search-input {
         width: 100%;
@@ -64,13 +116,48 @@ export class EmployeeSearch extends LitElement {
   `;
 
   handleInput(e) {
+    const inputValue = e.target.value;
+
+    const trimmedValue = inputValue ? inputValue.trim() : '';
+
+    this.value = trimmedValue;
+
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer);
+    }
+
+    this.debounceTimer = setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent('search-input', {
+          detail: { value: trimmedValue },
+          bubbles: true,
+          composed: true,
+        }),
+      );
+      this.debounceTimer = null;
+    }, this.debounceDelay);
+  }
+
+  handleClear() {
+    this.value = '';
+
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer);
+      this.debounceTimer = null;
+    }
+
     this.dispatchEvent(
       new CustomEvent('search-input', {
-        detail: { value: e.target.value },
+        detail: { value: '' },
         bubbles: true,
         composed: true,
       }),
     );
+
+    const input = this.shadowRoot.querySelector('.search-input');
+    if (input) {
+      input.focus();
+    }
   }
 
   render() {
@@ -86,6 +173,15 @@ export class EmployeeSearch extends LitElement {
           ?disabled=${this.disabled}
           @input=${this.handleInput}
         />
+        <button
+          class="clear-button ${this.value ? '' : 'hidden'}"
+          @click=${this.handleClear}
+          ?disabled=${this.disabled}
+          title=${msg('Clear search')}
+          type="button"
+        >
+          ✕
+        </button>
       </div>
     `;
   }

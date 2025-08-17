@@ -1,3 +1,5 @@
+import { msg } from './localization/index.js';
+
 const STORAGE_KEY = 'employees';
 
 class EmployeeStore {
@@ -46,43 +48,45 @@ class EmployeeStore {
     const errors = {};
 
     if (!employee.firstName?.trim()) {
-      errors.firstName = 'First name is required';
+      errors.firstName = msg('First name is required');
     }
     if (!employee.lastName?.trim()) {
-      errors.lastName = 'Last name is required';
+      errors.lastName = msg('Last name is required');
     }
     if (!employee.email?.trim()) {
-      errors.email = 'Email is required';
+      errors.email = msg('Email is required');
     }
     if (!employee.phone?.trim()) {
-      errors.phone = 'Phone is required';
+      errors.phone = msg('Phone is required');
     }
     if (!employee.dateOfEmployment) {
-      errors.dateOfEmployment = 'Date of employment is required';
+      errors.dateOfEmployment = msg('Date of employment is required');
     }
     if (!employee.dateOfBirth) {
-      errors.dateOfBirth = 'Date of birth is required';
+      errors.dateOfBirth = msg('Date of birth is required');
     }
     if (!employee.department?.trim()) {
-      errors.department = 'Department is required';
+      errors.department = msg('Department is required');
     }
     if (!employee.position?.trim()) {
-      errors.position = 'Position is required';
+      errors.position = msg('Position is required');
     }
 
     if (employee.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(employee.email)) {
-      errors.email = 'Invalid email format';
+      errors.email = msg('Invalid email format');
     }
 
     if (employee.phone && !/^\+?[\d\s\-()]{10,15}$/.test(employee.phone)) {
-      errors.phone = 'Invalid phone format';
+      errors.phone = msg('Invalid phone format');
     }
     if (employee.dateOfEmployment) {
       const empDate = new Date(employee.dateOfEmployment);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       if (empDate > today) {
-        errors.dateOfEmployment = 'Employment date cannot be in the future';
+        errors.dateOfEmployment = msg(
+          'Employment date cannot be in the future',
+        );
       }
     }
 
@@ -98,7 +102,7 @@ class EmployeeStore {
           : age;
 
       if (actualAge < 15) {
-        errors.dateOfBirth = 'Employee must be at least 15 years old';
+        errors.dateOfBirth = msg('Employee must be at least 15 years old');
       }
     }
 
@@ -107,7 +111,7 @@ class EmployeeStore {
       const employmentDate = new Date(employee.dateOfEmployment);
 
       if (birthDate >= employmentDate) {
-        errors.dateOfBirth = 'Birth date must be before employment date';
+        errors.dateOfBirth = msg('Birth date must be before employment date');
       } else {
         const ageAtEmployment =
           employmentDate.getFullYear() - birthDate.getFullYear();
@@ -119,8 +123,9 @@ class EmployeeStore {
             : ageAtEmployment;
 
         if (actualAgeAtEmployment < 15) {
-          errors.dateOfEmployment =
-            'Employee must be at least 15 years old at employment date';
+          errors.dateOfEmployment = msg(
+            'Employee must be at least 15 years old at employment date',
+          );
         }
       }
     }
@@ -129,14 +134,14 @@ class EmployeeStore {
       employee.department &&
       !['Analytics', 'Tech'].includes(employee.department)
     ) {
-      errors.department = 'Department must be Analytics or Tech';
+      errors.department = msg('Department must be Analytics or Tech');
     }
 
     if (
       employee.position &&
       !['Junior', 'Medior', 'Senior'].includes(employee.position)
     ) {
-      errors.position = 'Position must be Junior, Medior, or Senior';
+      errors.position = msg('Position must be Junior, Medior, or Senior');
     }
     if (employee.email) {
       const emailExists = this.employees.some(
@@ -145,7 +150,7 @@ class EmployeeStore {
           emp.email.toLowerCase() === employee.email.toLowerCase(),
       );
       if (emailExists) {
-        errors.email = 'Email already exists';
+        errors.email = msg('Email already exists');
       }
     }
 
@@ -157,7 +162,7 @@ class EmployeeStore {
           this.normalizePhone(emp.phone) === normalizedPhone,
       );
       if (phoneExists) {
-        errors.phone = 'Phone number already exists';
+        errors.phone = msg('Phone number already exists');
       }
     }
 
@@ -170,8 +175,9 @@ class EmployeeStore {
           emp.dateOfBirth === employee.dateOfBirth,
       );
       if (duplicateExists) {
-        errors.duplicate =
-          'An employee with the same name and birth date already exists';
+        errors.duplicate = msg(
+          'An employee with the same name and birth date already exists',
+        );
       }
     }
 

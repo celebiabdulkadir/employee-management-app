@@ -18,8 +18,7 @@ export function setStoredLocale(locale) {
   localStorage.setItem(LOCALE_STORAGE_KEY, locale);
 }
 
-export function initializeLocale() {
-  // Priority: stored locale > HTML lang > default 'en'
+export async function initializeLocale() {
   const storedLocale = getStoredLocale();
   const htmlLang = getHtmlLang();
   const supportedLocales = ['en', 'tr'];
@@ -33,7 +32,8 @@ export function initializeLocale() {
   }
 
   if (getLocale() !== targetLocale) {
-    return setLocale(targetLocale).then(() => {
+    try {
+      await setLocale(targetLocale);
       setHtmlLang(targetLocale);
       setStoredLocale(targetLocale);
       window.dispatchEvent(
@@ -41,29 +41,34 @@ export function initializeLocale() {
           detail: { locale: targetLocale },
         }),
       );
-    });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error initializing locale:', error);
+    }
+  } else {
+    setStoredLocale(targetLocale);
+    window.dispatchEvent(
+      new CustomEvent('locale-changed', {
+        detail: { locale: targetLocale },
+      }),
+    );
   }
-
-  // Locale is already correct, but still store it and notify
-  setStoredLocale(targetLocale);
-  window.dispatchEvent(
-    new CustomEvent('locale-changed', {
-      detail: { locale: targetLocale },
-    }),
-  );
-  return Promise.resolve();
 }
 
-export function switchLocale(newLocale) {
-  setLocale(newLocale).then(() => {
+export async function switchLocale(newLocale) {
+  try {
+    await setLocale(newLocale);
     setHtmlLang(newLocale);
-    setStoredLocale(newLocale); // Store the selected locale
+    setStoredLocale(newLocale);
     window.dispatchEvent(
       new CustomEvent('locale-changed', {
         detail: { locale: newLocale },
       }),
     );
-  });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error switching locale:', error);
+  }
 }
 
 export function getCurrentLocale() {

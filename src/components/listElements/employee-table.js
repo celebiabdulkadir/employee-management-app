@@ -20,6 +20,19 @@ export class EmployeeTable extends LitElement {
     this.loading = false;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.localeChangeHandler = () => {
+      this.requestUpdate();
+    };
+    window.addEventListener('locale-changed', this.localeChangeHandler);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('locale-changed', this.localeChangeHandler);
+  }
+
   static styles = css`
     :host {
       display: block;
@@ -107,13 +120,29 @@ export class EmployeeTable extends LitElement {
       z-index: 5;
     }
 
+    .employee-table tr.selected {
+      background: #fff3e0 !important;
+    }
+
+    .employee-table tr.selected td:last-child {
+      background: #fff3e0 !important;
+    }
+
     @media (hover: hover) {
-      .employee-table tr:hover {
+      .employee-table tr:hover:not(.selected) {
         background: #f8f9fa;
       }
 
-      .employee-table tr:hover td:last-child {
+      .employee-table tr:hover:not(.selected) td:last-child {
         background: #f8f9fa;
+      }
+
+      .employee-table tr.selected:hover {
+        background: #ffe0b3 !important;
+      }
+
+      .employee-table tr.selected:hover td:last-child {
+        background: #ffe0b3 !important;
       }
     }
 
@@ -299,7 +328,7 @@ export class EmployeeTable extends LitElement {
     const isSelected = this.selectedEmployees.includes(employee.id);
 
     return html`
-      <tr>
+      <tr class=${isSelected ? 'selected' : ''}>
         <td>
           <input
             type="checkbox"
