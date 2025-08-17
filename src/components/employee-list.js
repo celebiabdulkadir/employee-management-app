@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
 import { msg } from '../localization/index.js';
 import { employeeStore } from '../employee-store.js';
+import './app-button.js';
 
 export class EmployeeList extends LitElement {
   static properties = {
@@ -262,28 +263,31 @@ export class EmployeeList extends LitElement {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-    .pagination button {
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      background: white;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.2s;
+    .pagination app-button {
+      margin: 0;
     }
 
-    .pagination button:hover:not(:disabled) {
-      background: #f5f5f5;
+    .pagination app-button .button {
+      padding: 8px 12px !important;
+      border: 1px solid #ddd !important;
+      background: white !important;
+      color: #333 !important;
+      border-radius: 4px !important;
+      font-size: 14px !important;
+      min-height: auto !important;
+      box-shadow: none !important;
+      transform: none !important;
     }
 
-    .pagination button.active {
-      background: #ff6b35;
-      color: white;
-      border-color: #ff6b35;
+    .pagination app-button[active] .button {
+      background: #ff6b35 !important;
+      color: white !important;
+      border-color: #ff6b35 !important;
     }
 
-    .pagination button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+    .pagination app-button .button:disabled {
+      opacity: 0.5 !important;
+      cursor: not-allowed !important;
     }
 
     .empty-state {
@@ -678,30 +682,36 @@ export class EmployeeList extends LitElement {
 
     return html`
       <div class="pagination">
-        <button
+        <app-button
+          variant="ghost"
+          size="small"
           ?disabled=${this.currentPage === 1}
-          @click=${() => this.handlePageChange(this.currentPage - 1)}
+          @app-button-click=${() => this.handlePageChange(this.currentPage - 1)}
         >
           ${msg('Previous')}
-        </button>
+        </app-button>
 
         ${pages.map(
           page => html`
-            <button
-              class=${page === this.currentPage ? 'active' : ''}
-              @click=${() => this.handlePageChange(page)}
+            <app-button
+              variant="ghost"
+              size="small"
+              ?active=${page === this.currentPage}
+              @app-button-click=${() => this.handlePageChange(page)}
             >
               ${page}
-            </button>
+            </app-button>
           `,
         )}
 
-        <button
+        <app-button
+          variant="ghost"
+          size="small"
           ?disabled=${this.currentPage === this.totalPages}
-          @click=${() => this.handlePageChange(this.currentPage + 1)}
+          @app-button-click=${() => this.handlePageChange(this.currentPage + 1)}
         >
           ${msg('Next')}
-        </button>
+        </app-button>
       </div>
     `;
   }

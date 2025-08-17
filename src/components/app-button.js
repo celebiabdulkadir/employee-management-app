@@ -67,11 +67,46 @@ export class AppButton extends LitElement {
       border: 1px solid #ff6b35;
     }
 
-    .button--primary:hover:not(:disabled) {
-      background: #e55a2b;
-      border-color: #e55a2b;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    /* Hover effects - only on devices that support true hover */
+    @media (hover: hover) {
+      .button--primary:hover:not(:disabled) {
+        background: #e55a2b;
+        border-color: #e55a2b;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+      }
+
+      .button--secondary:hover:not(:disabled) {
+        background: #ff6b35;
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+      }
+
+      .button--ghost:hover:not(:disabled) {
+        background: #f5f5f5;
+        border-color: #ff6b35;
+        color: #ff6b35;
+      }
+
+      .button--link:hover:not(:disabled) {
+        color: #e55a2b;
+        text-decoration: none;
+      }
+
+      .button--danger:hover:not(:disabled) {
+        background: #c82333;
+        border-color: #c82333;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+      }
+
+      .button--success:hover:not(:disabled) {
+        background: #218838;
+        border-color: #218838;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+      }
     }
 
     .button--secondary {
@@ -80,23 +115,10 @@ export class AppButton extends LitElement {
       border: 1px solid #ff6b35;
     }
 
-    .button--secondary:hover:not(:disabled) {
-      background: #ff6b35;
-      color: white;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
-    }
-
     .button--ghost {
       background: transparent;
       color: #666;
       border: 1px solid #ddd;
-    }
-
-    .button--ghost:hover:not(:disabled) {
-      background: #f5f5f5;
-      border-color: #ff6b35;
-      color: #ff6b35;
     }
 
     .button--ghost.active {
@@ -112,35 +134,16 @@ export class AppButton extends LitElement {
       text-decoration: underline;
     }
 
-    .button--link:hover:not(:disabled) {
-      color: #e55a2b;
-      text-decoration: none;
-    }
-
     .button--danger {
       background: #dc3545;
       color: white;
       border: 1px solid #dc3545;
     }
 
-    .button--danger:hover:not(:disabled) {
-      background: #c82333;
-      border-color: #c82333;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
-    }
-
     .button--success {
       background: #28a745;
       color: white;
       border: 1px solid #28a745;
-    }
-
-    .button--success:hover:not(:disabled) {
-      background: #218838;
-      border-color: #218838;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
     }
 
     /* Sizes */

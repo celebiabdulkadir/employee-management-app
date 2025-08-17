@@ -33,11 +33,25 @@ export function initializeLocale() {
   }
 
   if (getLocale() !== targetLocale) {
-    setLocale(targetLocale).then(() => {
+    return setLocale(targetLocale).then(() => {
       setHtmlLang(targetLocale);
       setStoredLocale(targetLocale);
+      window.dispatchEvent(
+        new CustomEvent('locale-changed', {
+          detail: { locale: targetLocale },
+        }),
+      );
     });
   }
+
+  // Locale is already correct, but still store it and notify
+  setStoredLocale(targetLocale);
+  window.dispatchEvent(
+    new CustomEvent('locale-changed', {
+      detail: { locale: targetLocale },
+    }),
+  );
+  return Promise.resolve();
 }
 
 export function switchLocale(newLocale) {

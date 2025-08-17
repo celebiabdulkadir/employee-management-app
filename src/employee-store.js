@@ -63,6 +63,12 @@ class EmployeeStore {
     if (!employee.dateOfBirth) {
       errors.dateOfBirth = 'Date of birth is required';
     }
+    if (!employee.department?.trim()) {
+      errors.department = 'Department is required';
+    }
+    if (!employee.position?.trim()) {
+      errors.position = 'Position is required';
+    }
 
     if (employee.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(employee.email)) {
       errors.email = 'Invalid email format';

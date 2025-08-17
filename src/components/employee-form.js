@@ -339,7 +339,7 @@ export class EmployeeForm extends LitElement {
             </div>
 
             <div class="form-group">
-              <label class="form-label">${msg('Department')}</label>
+              <label class="form-label required">${msg('Department')}</label>
               <select
                 class="form-select ${this.errors.department ? 'error' : ''}"
                 .value=${this.formData.department}
@@ -359,7 +359,7 @@ export class EmployeeForm extends LitElement {
             </div>
 
             <div class="form-group">
-              <label class="form-label">${msg('Position')}</label>
+              <label class="form-label required">${msg('Position')}</label>
               <select
                 class="form-select ${this.errors.position ? 'error' : ''}"
                 .value=${this.formData.position}

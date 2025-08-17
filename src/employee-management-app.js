@@ -3,23 +3,38 @@ import { initializeLocale } from './localization/index.js';
 import { AppRouter } from './router/index.js';
 import './components/app-header.js';
 
-// Initialize on app startup
-initializeLocale();
-
 class EmployeeManagementApp extends LitElement {
   static properties = {
     header: { type: String },
+    localeReady: { type: Boolean },
   };
 
   constructor() {
     super();
     this.router = null;
     this.header = 'My app';
+    this.localeReady = false;
+    this.initializeApp();
+  }
+
+  async initializeApp() {
+    await initializeLocale();
+    this.localeReady = true;
+    await this.updateComplete;
+    this.initializeRouter();
+  }
+
+  initializeRouter() {
+    if (!this.router && this.localeReady) {
+      const outlet = this.shadowRoot.querySelector('#router-outlet');
+      if (outlet) {
+        this.router = new AppRouter(outlet);
+      }
+    }
   }
 
   firstUpdated() {
-    const outlet = this.shadowRoot.querySelector('#router-outlet');
-    this.router = new AppRouter(outlet);
+    this.initializeRouter();
   }
 
   connectedCallback() {
@@ -68,6 +83,14 @@ class EmployeeManagementApp extends LitElement {
   `;
 
   render() {
+    if (!this.localeReady) {
+      return html`<div
+        style="display: flex; justify-content: center; align-items: center; height: 100vh;"
+      >
+        Loading...
+      </div>`;
+    }
+
     return html`
       <div class="app-container">
         <app-header></app-header>
