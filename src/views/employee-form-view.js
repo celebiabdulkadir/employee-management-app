@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { msg } from '../localization/index.js';
-import '../components/back-button.js';
+import '../components/buttons/back-button.js';
 import '../components/employee-form.js';
 
 export class EmployeeFormView extends LitElement {

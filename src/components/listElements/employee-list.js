@@ -261,7 +261,8 @@ export class EmployeeList extends LitElement {
 
         employees.forEach(emp => employeeStore.add(emp));
       } catch (error) {
-        // Sample data not added, continue silently
+        // eslint-disable-next-line no-console
+        console.error('Error adding sample data:', error);
       }
     }
   }
@@ -280,6 +281,16 @@ export class EmployeeList extends LitElement {
       this.pageSize,
       this.searchQuery,
     );
+
+    if (
+      result.items.length === 0 &&
+      result.totalPages > 0 &&
+      this.currentPage > result.totalPages
+    ) {
+      this.currentPage = Math.max(1, result.totalPages);
+      this.loadEmployees();
+      return;
+    }
 
     this.employees = result.items;
     this.totalPages = result.totalPages;
@@ -326,7 +337,6 @@ export class EmployeeList extends LitElement {
     if (confirm(msg('Are you sure you want to delete this employee?'))) {
       try {
         employeeStore.delete(e.detail.employeeId);
-        // Show success message
       } catch (error) {
         // eslint-disable-next-line no-alert
         alert(msg('Error deleting employee'));
