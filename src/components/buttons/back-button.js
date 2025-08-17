@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
-import { msg } from '../localization/index.js';
+import { msg } from '../../localization/index.js';
 import './app-button.js';
 
 export class BackButton extends LitElement {

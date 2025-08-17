@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { msg } from '../localization/index.js';
 import './language-switcher.js';
-import './app-button.js';
+import './buttons/app-button.js';
 
 export class AppHeader extends LitElement {
   static styles = css`

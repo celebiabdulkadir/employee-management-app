@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
 import { msg } from '../localization/index.js';
 import { employeeStore } from '../employee-store.js';
-import './app-button.js';
+import './buttons/app-button.js';
 
 export class EmployeeForm extends LitElement {
   static properties = {

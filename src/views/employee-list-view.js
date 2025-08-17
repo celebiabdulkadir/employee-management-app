@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
-import '../components/employee-list.js';
-import '../components/app-button.js';
+import '../components/listElements/employee-list.js';
+import '../components/buttons/app-button.js';
 
 export class EmployeeListView extends LitElement {
   static styles = css`

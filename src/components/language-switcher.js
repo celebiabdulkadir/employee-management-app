@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { msg, switchLocale, getCurrentLocale } from '../localization/index.js';
-import './app-button.js';
+import './buttons/app-button.js';
 
 export class LanguageSwitcher extends LitElement {
   static properties = {
