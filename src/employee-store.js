@@ -102,6 +102,29 @@ class EmployeeStore {
       }
     }
 
+    if (employee.dateOfBirth && employee.dateOfEmployment) {
+      const birthDate = new Date(employee.dateOfBirth);
+      const employmentDate = new Date(employee.dateOfEmployment);
+
+      if (birthDate >= employmentDate) {
+        errors.dateOfBirth = 'Birth date must be before employment date';
+      } else {
+        const ageAtEmployment =
+          employmentDate.getFullYear() - birthDate.getFullYear();
+        const monthDiff = employmentDate.getMonth() - birthDate.getMonth();
+        const actualAgeAtEmployment =
+          monthDiff < 0 ||
+          (monthDiff === 0 && employmentDate.getDate() < birthDate.getDate())
+            ? ageAtEmployment - 1
+            : ageAtEmployment;
+
+        if (actualAgeAtEmployment < 15) {
+          errors.dateOfEmployment =
+            'Employee must be at least 15 years old at employment date';
+        }
+      }
+    }
+
     if (
       employee.department &&
       !['Analytics', 'Tech'].includes(employee.department)
