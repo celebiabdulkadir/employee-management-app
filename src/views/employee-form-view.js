@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { msg } from '../localization/index.js';
 import '../components/back-button.js';
+import '../components/employee-form.js';
 
 export class EmployeeFormView extends LitElement {
   static properties = {
@@ -32,15 +33,6 @@ export class EmployeeFormView extends LitElement {
     .view-subtitle {
       color: #666;
       margin: 0;
-    }
-
-    .placeholder {
-      background: white;
-      border-radius: 8px;
-      padding: 40px;
-      text-align: center;
-      border: 2px dashed #e0e0e0;
-      color: #666;
     }
   `;
 
@@ -87,10 +79,10 @@ export class EmployeeFormView extends LitElement {
         <p class="view-subtitle">${subtitle}</p>
       </div>
 
-      <div class="placeholder">
-        <p>${msg('Employee form component will be implemented here')}</p>
-        ${this.isEdit ? html`<p>Employee ID: ${this.employeeId}</p>` : ''}
-      </div>
+      <employee-form
+        .employeeId=${this.employeeId}
+        .isEdit=${this.isEdit}
+      ></employee-form>
     `;
   }
 }

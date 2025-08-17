@@ -2,19 +2,16 @@ export const templates = {
   sbb731cacaa7fea68: `Çalışan Yönetimi`,
   s32c9b3dd030fc24c: `Çalışan Ekle`,
   s321ba842bf7c8486: `İsim, e-posta veya telefon ile ara...`,
-  // Navigation
   Employees: `Çalışanlar`,
   'Add Employee': `Çalışan Ekle`,
   'Switch to English': `İngilizce'ye Geç`,
   'Switch to Turkish': `Türkçe'ye Geç`,
   'Manage your employee database': `Çalışan veritabanınızı yönetin`,
   'Employee list component will be implemented here': `Çalışan listesi bileşeni burada uygulanacak`,
-  // Form View
   'Edit Employee': `Çalışan Düzenle`,
   'Update employee information': `Çalışan bilgilerini güncelle`,
   'Enter new employee details': `Yeni çalışan bilgilerini girin`,
   'Employee form component will be implemented here': `Çalışan formu bileşeni burada uygulanacak`,
-  // Employee List
   'Employee List': `Çalışan Listesi`,
   'Search by name, email or phone...': `İsim, e-posta veya telefon ile ara...`,
   'Table View': `Tablo Görünümü`,
@@ -36,7 +33,15 @@ export const templates = {
   Next: `Sonraki`,
   'No employees yet': `Henüz çalışan yok`,
   'Add your first employee to get started': `Başlamak için ilk çalışanınızı ekleyin`,
-  // Back Button
   Back: `Geri`,
   'Back to Employee List': `Çalışan Listesine Geri Dön`,
+  'Enter first name': `Adınızı girin`,
+  'Enter last name': `Soyadınızı girin`,
+  'Enter email address': `E-posta adresinizi girin`,
+  'Select department': `Departman seçin`,
+  'Select position': `Pozisyon seçin`,
+  Cancel: `İptal`,
+  'Update Employee': `Çalışanı Güncelle`,
+  'Employee updated successfully!': `Çalışan başarıyla güncellendi!`,
+  'Employee added successfully!': `Çalışan başarıyla eklendi!`,
 };
