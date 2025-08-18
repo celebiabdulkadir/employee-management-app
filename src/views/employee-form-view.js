@@ -71,10 +71,7 @@ export class EmployeeFormView extends LitElement {
 
     return html`
       <div class="view-header">
-        <back-button
-          path="/"
-          text=${msg('Back to Employee List')}
-        ></back-button>
+        <back-button path="/" text=${msg('Back')}></back-button>
         <h1 class="view-title">${title}</h1>
         <p class="view-subtitle">${subtitle}</p>
       </div>

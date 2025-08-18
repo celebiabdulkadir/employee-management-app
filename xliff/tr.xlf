@@ -10,10 +10,6 @@
   <source>Search by name, email or phone...</source>
   <target>İsim, e-posta veya telefon ile ara...</target>
 </trans-unit>
-<trans-unit id="sb15e48a6ab4e4c27">
-  <source>Are you sure you want to delete this employee?</source>
-  <target>Bu çalışanı silmek istediğinizden emin misiniz?</target>
-</trans-unit>
 <trans-unit id="sb2913c5495beab4d">
   <source>Error deleting employee</source>
   <target>Çalışan silinirken hata</target>
@@ -92,7 +88,7 @@
 </trans-unit>
 <trans-unit id="sc16e00a7a8b2fde2">
   <source>Back</source>
-  <target>Geri</target>
+  <target>Geri Dön</target>
 </trans-unit>
 <trans-unit id="s91c63c6231457c16">
   <source>Employee updated successfully!</source>
@@ -126,10 +122,6 @@
   <source>Cancel</source>
   <target>İptal</target>
 </trans-unit>
-<trans-unit id="sc8306ad1a022ddcc">
-  <source>Update Employee</source>
-  <target>Çalışanı Güncelle</target>
-</trans-unit>
 <trans-unit id="s7abe9b2dfe244612">
   <source>Update employee information</source>
   <target>Çalışan bilgilerini güncelle</target>
@@ -137,10 +129,6 @@
 <trans-unit id="s79a57d60b3dbe6d3">
   <source>Enter new employee details</source>
   <target>Yeni çalışan bilgilerini girin</target>
-</trans-unit>
-<trans-unit id="sb43fdccd441a53bf">
-  <source>Back to Employee List</source>
-  <target>Çalışan Listesine Geri Dön</target>
 </trans-unit>
 <trans-unit id="s4aa7098ee210ac9a">
   <source>Switch to English</source>
@@ -242,10 +230,6 @@
   <source>Try adjusting your search criteria</source>
   <target>Arama kriterlerinizi ayarlamayı deneyin</target>
 </trans-unit>
-<trans-unit id="s27346efc98fd4bcf">
-  <source>Are you sure you want to delete %s employee(s)?</source>
-  <target>%s çalışanı silmek istediğinizden emin misiniz?</target>
-</trans-unit>
 <trans-unit id="s2b74c1ba72fcfa5a">
   <source>Error deleting employees</source>
   <target>Çalışanları silerken hata oluştu</target>
@@ -269,6 +253,48 @@
 <trans-unit id="s5f4586bc1e2740e6">
   <source>Clear search</source>
   <target>Aramayı temizle</target>
+</trans-unit>
+<trans-unit id="s64ef2a6c2dd1d3d1">
+  <source>Edit</source>
+</trans-unit>
+<trans-unit id="sdc673e73b5c13aea">
+  <source>Delete</source>
+</trans-unit>
+<trans-unit id="s268ecd1cef45a9a8">
+  <source>Are you sure?</source>
+  <target>Emin misiniz?</target>
+</trans-unit>
+<trans-unit id="s5e8250fb85d64c23">
+  <source>Close</source>
+  <target>Kapat</target>
+</trans-unit>
+<trans-unit id="sb85774dc5d18ff0f">
+  <source>Confirm</source>
+  <target>Onayla</target>
+</trans-unit>
+<trans-unit id="se2fdd97d99766ece">
+  <source>Are you sure you want to delete this employee? This action cannot be undone.</source>
+  <target>Bu çalışanı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</target>
+</trans-unit>
+<trans-unit id="s9da79bd03cb9316b">
+  <source>Delete Employees</source>
+  <target>Çalışanları Sil</target>
+</trans-unit>
+<trans-unit id="s79b108cb6b9072d6">
+  <source>Are you sure you want to delete %s employee(s)? This action cannot be undone.</source>
+  <target>%s çalışanı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</target>
+</trans-unit>
+<trans-unit id="s089b91161fd9fa4d">
+  <source>Delete All</source>
+  <target>Hepsini Sil</target>
+</trans-unit>
+<trans-unit id="s8b0432eecbd8b034">
+  <source>Update</source>
+  <target>Güncelle</target>
+</trans-unit>
+<trans-unit id="sf9aee319a006c9b4">
+  <source>Add</source>
+  <target>Ekle</target>
 </trans-unit>
 </body>
 </file>

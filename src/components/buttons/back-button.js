@@ -49,7 +49,7 @@ export class BackButton extends LitElement {
     return html`
       <app-button
         variant="ghost"
-        size="medium"
+        size="small"
         icon="←"
         @app-button-click=${this.handleClick}
       >

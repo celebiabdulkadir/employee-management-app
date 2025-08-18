@@ -394,7 +394,7 @@ export class EmployeeForm extends LitElement {
               ?loading=${this.isSubmitting}
               ?disabled=${this.isSubmitting}
             >
-              ${this.isEdit ? msg('Update Employee') : msg('Add Employee')}
+              ${this.isEdit ? msg('Update') : msg('Add')}
             </app-button>
           </div>
         </form>

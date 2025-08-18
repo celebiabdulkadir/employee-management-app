@@ -7,6 +7,8 @@ import './employee-search.js';
 import './view-toggle.js';
 import './pagination.js';
 import './employee-table.js';
+import './employee-card.js';
+import '../modal/confirmation-modal.js';
 
 export class EmployeeList extends LitElement {
   static properties = {
@@ -20,6 +22,7 @@ export class EmployeeList extends LitElement {
     sortField: { type: String },
     sortDirection: { type: String },
     selectedEmployees: { type: Array },
+    confirmationModal: { type: Object },
   };
 
   constructor() {
@@ -34,6 +37,13 @@ export class EmployeeList extends LitElement {
     this.sortField = 'firstName';
     this.sortDirection = 'asc';
     this.selectedEmployees = [];
+    this.confirmationModal = {
+      open: false,
+      title: '',
+      message: '',
+      confirmText: '',
+      onConfirm: null,
+    };
   }
 
   static styles = css`
@@ -85,6 +95,20 @@ export class EmployeeList extends LitElement {
     .selected-count {
       color: #ff6b35;
       font-weight: 600;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
     }
 
     .add-button {
@@ -158,128 +182,55 @@ export class EmployeeList extends LitElement {
   addSampleDataIfEmpty() {
     if (employeeStore.getAll().length === 0) {
       try {
-        const employees = [
-          {
-            firstName: 'Jane',
-            lastName: 'Smith',
-            email: 'jane.smith@company.com',
-            phone: '+15551234567',
-            dateOfEmployment: '2023-03-10',
-            dateOfBirth: '1988-12-03',
-            department: 'Analytics',
-            position: 'Medior',
-          },
-          {
-            firstName: 'Bob',
-            lastName: 'Johnson',
-            email: 'bob.johnson@company.com',
-            phone: '+15552345678',
-            dateOfEmployment: '2023-02-20',
-            dateOfBirth: '1985-08-15',
-            department: 'Tech',
-            position: 'Junior',
-          },
-          {
-            firstName: 'Alice',
-            lastName: 'Brown',
-            email: 'alice.brown@company.com',
-            phone: '+15553456789',
-            dateOfEmployment: '2023-04-05',
-            dateOfBirth: '1992-03-10',
-            department: 'Analytics',
-            position: 'Senior',
-          },
-          {
-            firstName: 'Charlie',
-            lastName: 'Wilson',
-            email: 'charlie.wilson@company.com',
-            phone: '+15554567890',
-            dateOfEmployment: '2023-05-12',
-            dateOfBirth: '1987-11-25',
-            department: 'Tech',
-            position: 'Medior',
-          },
-          {
-            firstName: 'Diana',
-            lastName: 'Davis',
-            email: 'diana.davis@company.com',
-            phone: '+15555678901',
-            dateOfEmployment: '2023-06-18',
-            dateOfBirth: '1991-07-08',
-            department: 'Analytics',
-            position: 'Junior',
-          },
-          {
-            firstName: 'Eva',
-            lastName: 'Miller',
-            email: 'eva.miller@company.com',
-            phone: '+15556789012',
-            dateOfEmployment: '2023-07-22',
-            dateOfBirth: '1989-04-12',
-            department: 'Tech',
-            position: 'Senior',
-          },
-          {
-            firstName: 'Frank',
-            lastName: 'Garcia',
-            email: 'frank.garcia@company.com',
-            phone: '+15557890123',
-            dateOfEmployment: '2023-08-14',
-            dateOfBirth: '1986-09-30',
-            department: 'Analytics',
-            position: 'Medior',
-          },
-          {
-            firstName: 'Grace',
-            lastName: 'Martinez',
-            email: 'grace.martinez@company.com',
-            phone: '+15558901234',
-            dateOfEmployment: '2023-09-05',
-            dateOfBirth: '1993-01-18',
-            department: 'Tech',
-            position: 'Junior',
-          },
-          {
-            firstName: 'Henry',
-            lastName: 'Anderson',
-            email: 'henry.anderson@company.com',
-            phone: '+15559012345',
-            dateOfEmployment: '2023-10-12',
-            dateOfBirth: '1984-06-25',
-            department: 'Analytics',
-            position: 'Senior',
-          },
-          {
-            firstName: 'Ivy',
-            lastName: 'Taylor',
-            email: 'ivy.taylor@company.com',
-            phone: '+15550123456',
-            dateOfEmployment: '2023-11-08',
-            dateOfBirth: '1990-12-03',
-            department: 'Tech',
-            position: 'Medior',
-          },
-          {
-            firstName: 'Jack',
-            lastName: 'White',
-            email: 'jack.white@company.com',
-            phone: '+15551237890',
-            dateOfEmployment: '2023-12-01',
-            dateOfBirth: '1995-05-20',
-            department: 'Analytics',
-            position: 'Junior',
-          },
-          {
-            firstName: 'Kate',
-            lastName: 'Lee',
-            email: 'kate.lee@company.com',
-            phone: '+15552348901',
-            dateOfEmployment: '2024-01-15',
-            dateOfBirth: '1986-02-14',
-            department: 'Tech',
-            position: 'Senior',
-          },
+        const firstNames = [
+          'Jane',
+          'Bob',
+          'Alice',
+          'Charlie',
+          'Diana',
+          'Eva',
+          'Frank',
+          'Grace',
+          'Henry',
+          'Ivy',
+          'Jack',
+          'Kate',
         ];
+        const lastNames = [
+          'Smith',
+          'Johnson',
+          'Brown',
+          'Wilson',
+          'Davis',
+          'Miller',
+          'Garcia',
+          'Martinez',
+          'Anderson',
+          'Taylor',
+          'White',
+          'Lee',
+        ];
+        const departments = ['Analytics', 'Tech'];
+        const positions = ['Junior', 'Medior', 'Senior'];
+
+        const employees = [];
+        for (let i = 0; i < 12; i += 1) {
+          const firstName = firstNames[i];
+          const lastName = lastNames[i];
+          const employmentDate = new Date(2023, 2 + i, 10 + i * 5);
+          const birthDate = new Date(1984 + i, (i * 3) % 12, 15 + i * 2);
+
+          employees.push({
+            firstName,
+            lastName,
+            email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@company.com`,
+            phone: `+1555${(1234567 + i * 111111).toString().slice(-7)}`,
+            dateOfEmployment: employmentDate.toISOString().split('T')[0],
+            dateOfBirth: birthDate.toISOString().split('T')[0],
+            department: departments[i % 2],
+            position: positions[i % 3],
+          });
+        }
 
         employees.forEach(emp => employeeStore.add(emp));
       } catch (error) {
@@ -353,17 +304,30 @@ export class EmployeeList extends LitElement {
     Router.go(`/edit/${e.detail.employeeId}`);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   handleDelete(e) {
-    // eslint-disable-next-line no-alert, no-restricted-globals
-    if (confirm(msg('Are you sure you want to delete this employee?'))) {
-      try {
-        employeeStore.delete(e.detail.employeeId);
-      } catch (error) {
-        // eslint-disable-next-line no-alert
-        alert(msg('Error deleting employee'));
-      }
-    }
+    const { employeeId } = e.detail;
+    this.confirmationModal = {
+      open: true,
+      title: msg('Delete Employee'),
+      message: msg(
+        'Are you sure you want to delete this employee? This action cannot be undone.',
+      ),
+      confirmText: msg('Delete'),
+      onConfirm: () => {
+        try {
+          employeeStore.delete(employeeId);
+          this.selectedEmployees = this.selectedEmployees.filter(
+            id => id !== employeeId,
+          );
+          this.loadEmployees();
+          this.closeConfirmationModal();
+        } catch (error) {
+          // eslint-disable-next-line no-alert
+          alert(msg('Error deleting employee'));
+        }
+      },
+    };
+    this.requestUpdate();
   }
 
   handleSelectEmployee(e) {
@@ -391,29 +355,50 @@ export class EmployeeList extends LitElement {
     const count = this.selectedEmployees.length;
     if (count === 0) return;
 
-    if (
-      // eslint-disable-next-line no-alert, no-restricted-globals
-      confirm(
-        msg('Are you sure you want to delete %s employee(s)?').replace(
-          '%s',
-          count,
-        ),
-      )
-    ) {
-      try {
-        this.selectedEmployees.forEach(employeeId => {
-          employeeStore.delete(employeeId);
-        });
-        this.selectedEmployees = [];
-      } catch (error) {
-        // eslint-disable-next-line no-alert
-        alert(msg('Error deleting employees'));
-      }
-    }
+    this.confirmationModal = {
+      open: true,
+      title: msg('Delete Employees'),
+      message: msg(
+        'Are you sure you want to delete %s employee(s)? This action cannot be undone.',
+      ).replace('%s', count),
+      confirmText: msg('Delete All'),
+      onConfirm: () => {
+        try {
+          this.selectedEmployees.forEach(employeeId => {
+            employeeStore.delete(employeeId);
+          });
+          this.selectedEmployees = [];
+          this.loadEmployees();
+          this.closeConfirmationModal();
+        } catch (error) {
+          // eslint-disable-next-line no-alert
+          alert(msg('Error deleting employees'));
+        }
+      },
+    };
+    this.requestUpdate();
   }
 
   handleClearSelection() {
     this.selectedEmployees = [];
+  }
+
+  closeConfirmationModal() {
+    this.confirmationModal = {
+      ...this.confirmationModal,
+      open: false,
+    };
+    this.requestUpdate();
+  }
+
+  handleConfirmationCancel() {
+    this.closeConfirmationModal();
+  }
+
+  handleConfirmationConfirm() {
+    if (this.confirmationModal.onConfirm) {
+      this.confirmationModal.onConfirm();
+    }
   }
 
   render() {
@@ -471,17 +456,37 @@ export class EmployeeList extends LitElement {
             </div>
           `
         : html`
-            <employee-table
-              .employees=${this.employees}
-              .selectedEmployees=${this.selectedEmployees}
-              .sortField=${this.sortField}
-              .sortDirection=${this.sortDirection}
-              @sort-change=${this.handleSort}
-              @employee-select=${this.handleSelectEmployee}
-              @select-all=${this.handleSelectAll}
-              @employee-edit=${this.handleEdit}
-              @employee-delete=${this.handleDelete}
-            ></employee-table>
+            ${this.viewMode === 'table'
+              ? html`
+                  <employee-table
+                    .employees=${this.employees}
+                    .selectedEmployees=${this.selectedEmployees}
+                    .sortField=${this.sortField}
+                    .sortDirection=${this.sortDirection}
+                    @sort-change=${this.handleSort}
+                    @employee-select=${this.handleSelectEmployee}
+                    @select-all=${this.handleSelectAll}
+                    @employee-edit=${this.handleEdit}
+                    @employee-delete=${this.handleDelete}
+                  ></employee-table>
+                `
+              : html`
+                  <div class="cards-grid">
+                    ${this.employees.map(
+                      employee => html`
+                        <employee-card
+                          .employee=${employee}
+                          .selected=${this.selectedEmployees.includes(
+                            employee.id,
+                          )}
+                          @employee-select=${this.handleSelectEmployee}
+                          @employee-edit=${this.handleEdit}
+                          @employee-delete=${this.handleDelete}
+                        ></employee-card>
+                      `,
+                    )}
+                  </div>
+                `}
 
             <pagination-component
               .currentPage=${this.currentPage}
@@ -489,6 +494,15 @@ export class EmployeeList extends LitElement {
               @page-change=${this.handlePageChange}
             ></pagination-component>
           `}
+
+      <confirmation-modal
+        .open=${this.confirmationModal.open}
+        .modalTitle=${this.confirmationModal.title}
+        .message=${this.confirmationModal.message}
+        .confirmText=${this.confirmationModal.confirmText}
+        @cancel=${this.handleConfirmationCancel}
+        @confirm=${this.handleConfirmationConfirm}
+      ></confirmation-modal>
     `;
   }
 }
