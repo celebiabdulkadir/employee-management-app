@@ -2,6 +2,8 @@ import { LitElement, html, css } from 'lit';
 import { msg } from '../../localization/index.js';
 import '../buttons/app-button.js';
 
+const VIEW_STORAGE_KEY = 'preferred-view';
+
 export class ViewToggle extends LitElement {
   static properties = {
     currentView: { type: String },
@@ -11,12 +13,30 @@ export class ViewToggle extends LitElement {
 
   constructor() {
     super();
-    this.currentView = 'table';
+    this.currentView = this.getStoredView() || 'table';
     this.views = [
       { id: 'table', label: 'Table View', icon: '📋' },
       { id: 'card', label: 'Card View', icon: '🎯' },
     ];
     this.disabled = false;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getStoredView() {
+    try {
+      return localStorage.getItem(VIEW_STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  setStoredView(view) {
+    try {
+      localStorage.setItem(VIEW_STORAGE_KEY, view);
+    } catch {
+      // localStorage might not be available
+    }
   }
 
   connectedCallback() {
@@ -51,6 +71,9 @@ export class ViewToggle extends LitElement {
 
   handleViewChange(viewId) {
     if (this.disabled || viewId === this.currentView) return;
+
+    this.currentView = viewId;
+    this.setStoredView(viewId);
 
     this.dispatchEvent(
       new CustomEvent('view-change', {

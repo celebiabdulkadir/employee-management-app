@@ -10,6 +10,8 @@ import './employee-table.js';
 import './employee-card.js';
 import '../modal/confirmation-modal.js';
 
+const VIEW_STORAGE_KEY = 'preferred-view';
+
 export class EmployeeList extends LitElement {
   static properties = {
     employees: { type: Array },
@@ -33,7 +35,7 @@ export class EmployeeList extends LitElement {
     this.pageSize = 10;
     this.totalPages = 0;
     this.totalItems = 0;
-    this.viewMode = 'table';
+    this.viewMode = this.getStoredView() || 'table';
     this.sortField = 'firstName';
     this.sortDirection = 'asc';
     this.selectedEmployees = [];
@@ -44,6 +46,15 @@ export class EmployeeList extends LitElement {
       confirmText: '',
       onConfirm: null,
     };
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getStoredView() {
+    try {
+      return localStorage.getItem(VIEW_STORAGE_KEY);
+    } catch {
+      return null;
+    }
   }
 
   static styles = css`
