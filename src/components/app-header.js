@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import { Router } from '@vaadin/router';
 import { msg } from '../localization/index.js';
 import './language-switcher.js';
 import './buttons/app-button.js';
@@ -164,7 +165,7 @@ export class AppHeader extends LitElement {
 
   // eslint-disable-next-line class-methods-use-this
   handleAddNew() {
-    window.location.href = '/add';
+    Router.go('/add');
   }
 
   render() {

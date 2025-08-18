@@ -62,35 +62,35 @@ export class AppButton extends LitElement {
 
     /* Variants */
     .button--primary {
-      background: #ff6b35;
+      background: #c63f19;
       color: white;
-      border: 1px solid #ff6b35;
+      border: 1px solid #c63f19;
     }
 
     /* Hover effects - only on devices that support true hover */
     @media (hover: hover) {
       .button--primary:hover:not(:disabled) {
-        background: #e55a2b;
-        border-color: #e55a2b;
+        background: #a53516;
+        border-color: #a53516;
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        box-shadow: 0 4px 12px rgba(198, 63, 25, 0.3);
       }
 
       .button--secondary:hover:not(:disabled) {
-        background: #ff6b35;
+        background: #c63f19;
         color: white;
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+        box-shadow: 0 4px 12px rgba(198, 63, 25, 0.2);
       }
 
       .button--ghost:hover:not(:disabled) {
         background: #f5f5f5;
-        border-color: #ff6b35;
-        color: #ff6b35;
+        border-color: #c63f19;
+        color: #c63f19;
       }
 
       .button--link:hover:not(:disabled) {
-        color: #e55a2b;
+        color: #a53516;
         text-decoration: none;
       }
 
@@ -111,8 +111,8 @@ export class AppButton extends LitElement {
 
     .button--secondary {
       background: white;
-      color: #ff6b35;
-      border: 1px solid #ff6b35;
+      color: #c63f19;
+      border: 1px solid #c63f19;
     }
 
     .button--ghost {
@@ -122,14 +122,14 @@ export class AppButton extends LitElement {
     }
 
     .button--ghost.active {
-      background: #ff6b35;
+      background: #c63f19;
       color: white;
-      border-color: #ff6b35;
+      border-color: #c63f19;
     }
 
     .button--link {
       background: transparent;
-      color: #ff6b35;
+      color: #c63f19;
       border: none;
       text-decoration: underline;
     }
@@ -219,7 +219,7 @@ export class AppButton extends LitElement {
 
     /* Focus styles */
     .button:focus-visible {
-      outline: 2px solid #ff6b35;
+      outline: 2px solid #c63f19;
       outline-offset: 2px;
     }
 
