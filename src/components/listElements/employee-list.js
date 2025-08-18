@@ -59,14 +59,14 @@ export class EmployeeList extends LitElement {
       margin-bottom: 24px;
       flex-wrap: wrap;
       gap: 16px;
-      color: #ff6b35;
+      color: #c63f19;
     }
 
     .list-title {
       font-size: 24px;
       font-weight: 600;
       margin: 0;
-      color: #ff6b35;
+      color: #c63f19;
     }
 
     .header-controls {
@@ -83,7 +83,7 @@ export class EmployeeList extends LitElement {
       background: #fff3e0;
       border-radius: 8px;
       margin-bottom: 16px;
-      border: 1px solid #ff6b35;
+      border: 1px solid #c63f19;
     }
 
     .bulk-actions-text {
@@ -93,7 +93,7 @@ export class EmployeeList extends LitElement {
     }
 
     .selected-count {
-      color: #ff6b35;
+      color: #c63f19;
       font-weight: 600;
     }
 
@@ -112,7 +112,7 @@ export class EmployeeList extends LitElement {
     }
 
     .add-button {
-      background: #ff6b35;
+      background: #c63f19;
       color: white;
       border: none;
       padding: 10px 16px;
@@ -126,7 +126,7 @@ export class EmployeeList extends LitElement {
     }
 
     .add-button:hover {
-      background: #e55a2b;
+      background: #a53516;
     }
 
     .empty-state {

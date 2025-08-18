@@ -65,9 +65,9 @@ export class Pagination extends LitElement {
     }
 
     .pagination app-button[active] .button {
-      background: #ff6b35 !important;
+      background: #c63f19 !important;
       color: white !important;
-      border-color: #ff6b35 !important;
+      border-color: #c63f19 !important;
     }
 
     .pagination app-button .button:disabled {

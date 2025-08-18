@@ -51,7 +51,7 @@ export class EmployeeForm extends LitElement {
 
     .form-label.required::after {
       content: ' *';
-      color: #ff6b35;
+      color: #c63f19;
     }
 
     .form-input,
@@ -66,7 +66,7 @@ export class EmployeeForm extends LitElement {
     .form-input:focus,
     .form-select:focus {
       outline: none;
-      border-color: #ff6b35;
+      border-color: #c63f19;
       box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.1);
     }
 

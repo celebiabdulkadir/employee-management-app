@@ -50,7 +50,7 @@ export class EmployeeCard extends LitElement {
     }
 
     .employee-card.selected {
-      border-color: #ff6b35;
+      border-color: #c63f19;
       background: #fff8f5;
       box-shadow: 0 4px 16px rgba(255, 107, 53, 0.2);
     }
@@ -122,7 +122,7 @@ export class EmployeeCard extends LitElement {
 
     .department-analytics {
       background: #fff3e0;
-      color: #ff6b35;
+      color: #c63f19;
     }
 
     .department-tech {

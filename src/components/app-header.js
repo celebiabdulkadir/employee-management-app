@@ -9,9 +9,9 @@ export class AppHeader extends LitElement {
     :host {
       display: block;
       width: 100%;
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      color: white;
-      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
+      background: #f5f5f5;
+      color: #333;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .header-container {
@@ -35,20 +35,20 @@ export class AppHeader extends LitElement {
     .logo-icon {
       width: 36px;
       height: 36px;
-      background: rgba(255, 255, 255, 0.2);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
       font-weight: bold;
+      color: white;
     }
 
     .app-title {
       font-size: 18px;
       font-weight: 700;
       margin: 0;
-      color: white;
+      color: #ff6200;
       text-decoration: none;
       letter-spacing: -0.5px;
       white-space: nowrap;
@@ -71,10 +71,10 @@ export class AppHeader extends LitElement {
     }
 
     .nav-button {
-      --app-button-bg: rgba(255, 255, 255, 0.1);
-      --app-button-border: rgba(255, 255, 255, 0.2);
+      --app-button-bg: #ff6200;
+      --app-button-border: #ff6200;
       --app-button-color: white;
-      --app-button-hover-bg: rgba(255, 255, 255, 0.2);
+      --app-button-hover-bg: #e55a00;
     }
 
     .header-actions {
@@ -85,11 +85,11 @@ export class AppHeader extends LitElement {
     }
 
     language-switcher {
-      --language-button-bg: rgba(255, 255, 255, 0.1);
-      --language-button-border: rgba(255, 255, 255, 0.3);
-      --language-button-color: white;
-      --language-button-active-bg: rgba(255, 255, 255, 0.9);
-      --language-button-active-color: #ff6b35;
+      --language-button-bg: transparent;
+      --language-button-border: #ff6200;
+      --language-button-color: #ff6200;
+      --language-button-active-bg: #ff6200;
+      --language-button-active-color: white;
     }
 
     @media (max-width: 768px) {

@@ -57,7 +57,7 @@ export class EmployeeTable extends LitElement {
       padding: 12px 8px;
       text-align: left;
       font-weight: 600;
-      color: #ff6b35;
+      color: #c63f19;
       font-size: 14px;
       border-bottom: 1px solid #e9ecef;
       white-space: nowrap;
@@ -173,7 +173,7 @@ export class EmployeeTable extends LitElement {
 
     .department-analytics {
       background: #fff3e0;
-      color: #ff6b35;
+      color: #c63f19;
     }
 
     .department-tech {
