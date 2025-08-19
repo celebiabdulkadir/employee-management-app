@@ -7,7 +7,12 @@ describe('ViewToggle', () => {
   let element;
 
   beforeEach(async () => {
+    localStorage.clear();
     element = await fixture(html`<view-toggle></view-toggle>`);
+  });
+
+  afterEach(() => {
+    localStorage.clear();
   });
 
   it('has defaults', () => {
@@ -40,26 +45,24 @@ describe('ViewToggle', () => {
     });
 
     const cardButton = element.shadowRoot.querySelectorAll('app-button')[1];
-    cardButton.dispatchEvent(
-      new CustomEvent('app-button-click', { bubbles: true }),
-    );
+    const buttonElement = cardButton.shadowRoot.querySelector('button');
+    buttonElement.click();
 
     expect(eventDetail).to.exist;
     expect(eventDetail.view).to.equal('card');
   });
 
-  it('ignores same view', async () => {
+  it('does not fire event when clicking same view', async () => {
     let eventFired = false;
     element.addEventListener('view-change', () => {
       eventFired = true;
     });
 
-    const tableButton = element.shadowRoot.querySelectorAll('app-button')[0];
-    tableButton.dispatchEvent(
-      new CustomEvent('app-button-click', { bubbles: true }),
-    );
+    // Test the handleViewChange method directly
+    element.handleViewChange('table'); // Same as current view
 
     expect(eventFired).to.be.false;
+    expect(element.currentView).to.equal('table'); // Should remain unchanged
   });
 
   it('handles disabled state', async () => {
