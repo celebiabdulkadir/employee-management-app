@@ -1,31 +1,112 @@
-<p align="center">
-  <img width="200" src="https://open-wc.org/hero.png"></img>
-</p>
+# Employee Management App
 
-## Open-wc Starter App
+A simple employee management app built with LitElement. No backend required - data is stored in the browser.
 
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
+**Live Demo:** [https://employee-management-app-six-topaz.vercel.app/](https://employee-management-app-six-topaz.vercel.app/)
 
-## Quickstart
+## Screenshots
 
-To get started:
+### Table View
+![Table View]()
+
+### Card View  
+![Card View]()
+
+### Add Employee Form
+![Add Employee]()
+
+### Edit Employee Form
+![Edit Employee]()
+
+### Delete Confirmation
+![Delete Confirmation]()
+
+### Multiple Selection
+![Multiple Selection]()
+
+### Bulk Delete Confirmation
+![Bulk Delete Confirmation]()
+
+## Features
+
+- Add, edit, and delete employees
+- Search and sort employee data
+- Table and card view modes
+- Form validation with uniqueness checks
+- Turkish/English language support
+- Responsive design
+- Pagination
+
+## Employee Data
+
+Each employee has:
+- First name, last name (required)
+- Employment date (required, not future)
+- Date of birth (required, minimum 15 years)
+- Phone number (required, unique)
+- Email (required, unique)
+- Department (Analytics or Tech)
+- Position (Junior, Medior, or Senior)
+
+## Quick Start
 
 ```bash
-npm init @open-wc
-# requires node 10 & npm 6 or higher
+npm install
+npm start
 ```
 
-## Scripts
+Visit http://localhost:8000
 
-- `start` runs your app for development, reloading on file changes
-- `start:build` runs your app after it has been built using the build command
-- `build` builds your app and outputs it in your `dist` directory
-- `test` runs your test suite with Web Test Runner
-- `lint` runs the linter for your project
-- `format` fixes linting and formatting errors
+## Development
 
-## Tooling configs
+```bash
+npm start          # dev server
+npm run build      # build for production
+npm test           # run tests
+npm run test:watch # tests with watch
+npm run lint       # check code
+npm run format     # format code
+```
 
-For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
+## Project Structure
 
-If you customize the configuration a lot, you can consider moving them to individual files.
+```
+src/
+├── employee-management-app.js  # main app
+├── employee-store.js           # data layer
+├── components/                 # reusable components
+├── views/                      # page components
+├── localization/               # i18n
+└── router/                     # routing
+test/                           # unit tests
+```
+
+## Routes
+
+- `/` - employee list
+- `/add` - add new employee
+- `/edit/:id` - edit employee
+
+## Validation
+
+- Email uniqueness (case insensitive)
+- Phone uniqueness (normalized comparison)
+- Employment date not in future
+- Minimum age 15 years
+- Required field validation
+
+## Testing
+
+Tests use @open-wc/testing over 85% coverage target.
+
+```bash
+npm test -- --coverage
+```
+
+## Tech Stack
+
+- LitElement (vanilla JS)
+- Vaadin Router
+- Pure CSS (no frameworks)
+- localStorage persistence
+- Web Test Runner
