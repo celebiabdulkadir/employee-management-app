@@ -2,7 +2,7 @@
 
 A simple employee management app built with LitElement. No backend required - data is stored in the browser.
 
-**Live Demo:** [https://employee-management-app-six-topaz.vercel.app/](https://employee-management-app-six-topaz.vercel.app/)
+**Live Demo:** <a href="https://employee-management-app-six-topaz.vercel.app/" target="_blank">https://employee-management-app-six-topaz.vercel.app/</a>
 
 ## Screenshots
 
